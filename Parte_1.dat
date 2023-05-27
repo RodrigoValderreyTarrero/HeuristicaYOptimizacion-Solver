@@ -1,0 +1,36 @@
+data;
+
+/* data  section */
+#Se crea el set de las paradas
+set PARADAS := PARKING S1 S2 S3 COLEGIO;
+#Se crea el set de las paradas intermedias 
+set ESTACIONES := S1 S2 S3;
+#Se crean sets para los casos especificos del prking y el colegio
+set PARK := PARKING;
+set COL := COLEGIO;
+#Se anaden dos sets para comprobar que la combinacion de sus indices no genere bucles
+set DIAGONAL_INVERSA_FILA := S1 S2;
+set DIAGONAL_INVERSA_COLUMNA := S2 S3;
+
+#Se definen los costes en km de los recorridos
+param costes : PARKING S1 S2 S3 COLEGIO :=
+PARKING 10000 8     10    10    10000
+S1      8     10000 3     7     6
+S2      10    3     10000 5     7
+S3      10    7     5     10000 4
+COLEGIO 10000 6     7     4     10000;
+
+#Se definen las personas esperando en cada parada
+param personas_parada :=
+PARKING 0
+S1 15
+S2 5
+S3 10
+COLEGIO 0;
+
+#se define el numero total de alumnos
+param personas_total := 30;
+
+#se define la capacidad de los autobuses
+param capacidad := 20;
+end;

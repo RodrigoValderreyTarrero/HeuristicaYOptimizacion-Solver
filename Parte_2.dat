@@ -1,0 +1,52 @@
+data;
+
+/* data  section */
+#Se crea el set de las paradas
+set PARADAS := PARKING S1 S2 S3 COLEGIO;
+#Se crea el set de los alumnos
+set ALUMNOS := A1 A2 A3 A4 A5 A6 A7 A8;
+#Se crea el set de las paradas intermedias
+set ESTACIONES := S1 S2 S3;
+#Se crean sets para los casos especificos del prking y el colegio
+set PARK := PARKING;
+set COL := COLEGIO;
+#Se anaden dos sets para comprobar que la combinacion de sus indices no genere bucles
+set DIAGONAL_INVERSA_FILA := S1 S2;
+set DIAGONAL_INVERSA_COLUMNA := S2 S3;
+
+#Se definen los costes en km de los recorridos
+param costes : PARKING S1 S2 S3 COLEGIO :=
+PARKING        10000 8     10    10    10000
+S1             8     10000 3     7     6
+S2             10    3     10000 5     7
+S3             10    7     5     10000 4
+COLEGIO        10000 6     7     4     10000;
+
+#Se define a que paradas puede ir cada alumno
+param disponibilidad : PARKING S1 S2 S3 COLEGIO :=
+A1                          0  1  0  0  0
+A2                          0  1  0  0  0
+A3                          0  1  0  0  0
+A4                          0  1  1  1  0
+A5                          0  1  1  1  0
+A6                          0  0  0  1  0
+A7                          0  0  0  1  0
+A8                          0  0  0  1  0;
+
+#Se definen los alumnos que son hermanos
+param hermanos : A1 A2 A3 A4 A5 A6 A7 A8 :=
+A1               0  0  0  0  0  0  0  0
+A2               0  0  0  0  0  0  0  0
+A3               0  0  0  0  0  0  0  0  
+A4               0  0  0  0  1  0  0  0 
+A5               0  0  0  1  0  0  0  0
+A6               0  0  0  0  0  0  0  0
+A7               0  0  0  0  0  0  0  0
+A8               0  0  0  0  0  0  0  0; 
+
+#se define el numero total de alumnos
+param personas_total := 8;
+
+#se define la capacidad de los autobuses
+param capacidad := 4;
+end;
